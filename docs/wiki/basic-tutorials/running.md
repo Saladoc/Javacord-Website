@@ -66,13 +66,13 @@ This assumes your project is set up correctly, that it can be built without erro
 
 ![](./running-eclipse-configurations-bar.png)
 
-## :package: Deploying and running as a standalone application
+## :package: Deploying and Running as a Standalone Application
 
 Running from the IDE is only recommended during development and strongly discouraged for production use. Generally you'll want your build tool to create a convenient distribution format for you to use.
 
-### Building a distribution with gradle
+### Building a Distribution with Gradle
 
-For gradle, only two further steps are necessary for a basic application. On top of the steps described in the [Getting Started Section](/wiki/getting-started/intellij-gradle), also add the [Application Plugin](https://docs.gradle.org/current/userguide/application_plugin.html) and define your `mainClassName` as the fully qualified name of your main class. Since the `application` plugin implicitly applies the `java` plugin, you may leave that one out.
+For Gradle, only two further steps are necessary for a basic application. On top of the steps described in the [Getting Started Section](/wiki/getting-started/intellij-gradle), also add the [Application Plugin](https://docs.gradle.org/current/userguide/application_plugin.html) and define your `mainClassName` as the fully qualified name of your main class. Since the `application` plugin implicitly applies the `java` plugin, you may leave that one out.
 
 Your modified `build.gradle` file should now look like this.
 ```groovy
@@ -98,13 +98,13 @@ dependencies {
 }
 ```
 
-Now you can execute the `distZip` or `distTar` task with gradle. The task will create a distribution and package it in an archive file that will be placed in the `build/distributions` directory. Extract the content of those files on your server or whichever machine you want to run your bot on.
+Now you can execute the `distZip` or `distTar` task with Gradle. The task will create a distribution and package it in an archive file that will be placed in the `build/distributions` directory. Extract the content of those files on your server or whichever machine you want to run your bot on.
 
 The distribution usually only contains the directories `bin` and `lib`. From the distribution directory, run either `bin/yourbot` or `bin/yourbot.bat`, depending on whether you're running the bot on linux or windows.
 
-### Building a distribution with maven
+### Building a Distribution with Maven
 
-For maven, add the [Appassembler](https://www.mojohaus.org/appassembler/appassembler-maven-plugin/usage-program.html) plugin to your `pom.xml`.
+For Maven, add the [Appassembler](https://www.mojohaus.org/appassembler/appassembler-maven-plugin/usage-program.html) plugin to your `pom.xml`.
 
 ```xml
 <project>
@@ -129,23 +129,23 @@ For maven, add the [Appassembler](https://www.mojohaus.org/appassembler/appassem
 </project>
 ```
 
-Now you can use the `appassembler:assemble` target, for example with the invocation `mvn package appassembler:assemble`. Unlike the gradle plugin, Appassembler will not create an archive file, so you will have to create one manually or just copy the contents of the `target/appassembler` directory manually.
+Now you can use the `appassembler:assemble` target, for example with the invocation `mvn package appassembler:assemble`. Unlike the Gradle plugin, Appassembler will not create an archive file, so you will have to create one manually or just copy the contents of the `target/appassembler` directory manually.
 
 ### Running
 
-After creating your distribution via gradle or maven and extracting/copying it to the machine you want to run it from, you should have a directory containing both a `bin` and a `lib` directory. Depending on your platform, you can now run the `bin/yourbot` or `bin/yourbot.bat` script.
+After creating your distribution via Gradle or Maven and extracting/copying it to the machine you want to run it from, you should have a directory containing both a `bin` and a `lib` directory. Depending on your platform, you can now run the `bin/yourbot` or `bin/yourbot.bat` script.
 
 These automatically generated scripts will then invoke java with your dependencies on the classpath and run your main class. Your working directory will be the one you ran the script from.
 
-## :poop: Building a fat jar
+## :poop: Building a Fat Jar
 
 Although it is an abuse of the way java works, sometimes you will be forced to create a fat jar, sometimes called an über jar - a jar file that contains your application and all its dependencies. This is sometimes used as a lazy way of building a convenient distribution, but should be foregone in favor of the above mentioned distributions.
 
 However, in some cases (more often than not Bukkit/Spigot addons) it is necessary to provide a fat jar, since the host application's loading mechanism can only handle singular jar files. If you are subject to such a case of bad design, please complain to the maintainer of whatever host application you are using, then use the following instructions to forsake all that is good and just and create a fat jar. Remember to grit your teeth the whole time.
 
-### With gradle
+### With Gradle
 
-For gradle, use the [shadow](https://github.com/johnrengelman/shadow) plugin.
+For Gradle, use the [shadow](https://github.com/johnrengelman/shadow) plugin.
 
 ```groovy
 plugins {
@@ -157,9 +157,9 @@ plugins {
 
 With `gradlew shadowJar` you can now create a shaded (fat) jar. It will be named `build/libs/yourbot-1.0.0-all.jar` or similar, according to your projects settings.
 
-### With maven
+### With Maven
 
-For maven, add the [maven-shade-plugin](https://maven.apache.org/plugins/maven-shade-plugin/usage.html) to your build.
+For Maven, add the [maven-shade-plugin](https://maven.apache.org/plugins/maven-shade-plugin/usage.html) to your build.
 
 ```xml
 <project>
