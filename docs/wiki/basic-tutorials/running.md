@@ -48,7 +48,7 @@ This assumes your project is set up correctly, can be built without errors, and 
 
 **1.** In the menu bar, click "Run" then "Run Configurations...".
 
-**2.** In the freshly opened window, select "Java Application" on the left side, then click the leftmost button in the row above the tree view. A new configuration will appear.
+**2.** In the newly opened window, select "Java Application" on the left side, then click the leftmost button in the row above the tree view. A new configuration will appear.
 
 ![](./running-eclipse-configurations-empty.png)
 
