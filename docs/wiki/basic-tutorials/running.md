@@ -10,23 +10,23 @@ keywords:
 
 # Running and Deploying your Bot
 
-If you took the time to write a bot, at some point you'll also want to run it, either for productive use or to debug it from the IDE.
+If you took the time to write a bot, at some point you'll also want to run it, either for use in production or for debugging from the IDE.
 
 ## :construction_worker: Running from your IDE
 
-While developing your bot, you will want to run your bot directly from the IDE in order to quickly test changes and new features. For this, create a Run/Debug Configuration in your IDE of choice with your bots main class. Remember to also add any necessary parameters and environment variables.
+While developing your bot, you will want to run your bot directly from the IDE in order to quickly test changes and new features. For this, create a Run/Debug Configuration in your IDE of choice with your bot's main class. Remember to also add any necessary parameters and environment variables.
 
-A working Run/Debug configuration will also enable you to run your bot with a debugger. A debugger is often considered a developers most important tool, so make sure to familiarize yourself with the debugging integration for your IDE of choice.
+A working Run/Debug configuration will also enable you to run your bot with a debugger. A debugger is often considered a developer's most important tool, so make sure to familiarize yourself with the debugging integration for your IDE of choice.
 
 ### IntelliJ IDEA
 
-This assumes your project is set up correctly, preferably with [Gradle](/wiki/getting-started/intellij-gradle), that it can be built without errors, and that it does not yet have any run/debug configurations.
+This assumes your project is set up correctly, preferably with [Gradle](/wiki/getting-started/intellij-gradle), can be built without errors, and does not yet have any run/debug configurations.
 
-**1.** Locate and click the `Add Configuration...` button at the top bar next to the start button.
+**1.** Locate and click the `Add Configuration...` button in the top bar next to the start button.
 
 ![](./running-idea-configurations-empty.png)
 
-**2.** Another window opens. Click the `+` button in the top left and select `Application`
+**2.** In the newly opened window, click the `+` button in the top left and select `Application`
 
 **3.** Give a name for your configuration and select the module to use the classpath of (usually `yourproject.main`).
 
@@ -44,7 +44,7 @@ This assumes your project is set up correctly, preferably with [Gradle](/wiki/ge
 
 ### Eclipse
 
-This assumes your project is set up correctly, that it can be built without errors, and that it does not yet have any run/debug configurations.
+This assumes your project is set up correctly, can be built without errors, and does not yet have any run/debug configurations.
 
 **1.** In the menu bar, click "Run" then "Run Configurations...".
 
@@ -54,9 +54,9 @@ This assumes your project is set up correctly, that it can be built without erro
 
 **3.** Give a name to your configuration.
 
-**4.** Set the project and the main class. Use the "Browse..." and "Search..." buttons for an easier means of selection.
+**4.** Set the project and the main class. To easily select it, use the "Browse..." and "Search..." buttons.
 
-**5.** Optional: Set command line (and VM) arguments as well as environment variables on their respective tabs.
+**5.** Optional: Set command line (and VM) arguments as well as environment variables in their respective tabs.
 
 **6.** Click `Apply` to save your configuration, then `Close` to close the window.
 
@@ -68,7 +68,7 @@ This assumes your project is set up correctly, that it can be built without erro
 
 ## :package: Deploying and Running as a Standalone Application
 
-Running from the IDE is only recommended during development and strongly discouraged for production use. Generally you'll want your build tool to create a convenient distribution format for you to use.
+Running from the IDE is only recommended during development and strongly discouraged for production use. Generally, you'll want your build tool to create a convenient distribution format for you to use.
 
 ### Building a Distribution with Gradle
 
@@ -129,17 +129,17 @@ For Maven, add the [Appassembler](https://www.mojohaus.org/appassembler/appassem
 </project>
 ```
 
-Now you can use the `appassembler:assemble` target, for example with the invocation `mvn package appassembler:assemble`. Unlike the Gradle plugin, Appassembler will not create an archive file, so you will have to create one manually or just copy the contents of the `target/appassembler` directory manually.
+Now you can use the `appassembler:assemble` target, for example with the invocation `mvn package appassembler:assemble`. Unlike the Gradle plugin, Appassembler will not create an archive file, so you will have to manually create one or copy the contents of the `target/appassembler` directory.
 
 ### Running
 
 After creating your distribution via Gradle or Maven and extracting/copying it to the machine you want to run it from, you should have a directory containing both a `bin` and a `lib` directory. Depending on your platform, you can now run the `bin/yourbot` or `bin/yourbot.bat` script.
 
-These automatically generated scripts will then invoke java with your dependencies on the classpath and run your main class. Your working directory will be the one you ran the script from.
+These automatically generated scripts will then invoke java with your dependencies on the classpath and run your main class. Your working directory will be the directory you ran the script from.
 
 ## :poop: Building a Fat Jar
 
-Although it is an abuse of the way java works, sometimes you will be forced to create a fat jar, sometimes called an über jar - a jar file that contains your application and all its dependencies. This is sometimes used as a lazy way of building a convenient distribution, but should be foregone in favor of the above mentioned distributions.
+Although it is an abuse of the way java works, sometimes you will be forced to create a fat jar, or an über jar. This is a jar file that contains your application and all its dependencies. This is sometimes used as a lazy way of building a convenient distribution, but should be foregone in favor of the above mentioned distributions.
 
 However, in some cases (more often than not Bukkit/Spigot addons) it is necessary to provide a fat jar, since the host application's loading mechanism can only handle singular jar files. If you are subject to such a case of bad design, please complain to the maintainer of whatever host application you are using, then use the following instructions to forsake all that is good and just and create a fat jar. Remember to grit your teeth the whole time.
 
