@@ -145,7 +145,7 @@ However, in some cases (more often than not Bukkit/Spigot addons) it is necessar
 
 ### With Gradle
 
-For Gradle, use the [shadow](https://github.com/johnrengelman/shadow) plugin.
+For Gradle, use the [shadow](https://github.com/johnrengelman/shadow) plugin. If you want the fat jar to be executable, you will need to specify a main class via the application plugin.
 
 ```groovy
 plugins {
@@ -155,11 +155,13 @@ plugins {
 }
 ```
 
-With `gradlew shadowJar` you can now create a shaded (fat) jar. It will be named `build/libs/yourbot-1.0.0-all.jar` or similar, according to your projects settings.
+With `gradlew shadowJar` you can now create a shaded (fat) jar. It will be named `build/libs/yourbot-1.0.0-all.jar` or similar, according to your project settings.
 
 ### With Maven
 
-For Maven, add the [maven-shade-plugin](https://maven.apache.org/plugins/maven-shade-plugin/usage.html) to your build.
+For Maven, add the [maven-shade-plugin](https://maven.apache.org/plugins/maven-shade-plugin/usage.html) to your build. As with the other solutions, configure your main class.
+
+Some of your dependencies might be signed .jar files. Unfortunately, this will likely break your fat jar. Remove the signatures by defining an exclusion filter as demonstrated below. Let the thought that you had to disable a security feature just to make this work serve as a reminder that creating a fat jar is not how jars are meant to be used.
 
 ```xml
 <project>
@@ -173,6 +175,23 @@ For Maven, add the [maven-shade-plugin](https://maven.apache.org/plugins/maven-s
         <configuration>
             <shadedArtifactAttached>true</shadedArtifactAttached>
             <shadedClassifierName>fat</shadedClassifierName>
+            <transformers>
+                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                    <manifestEntries>
+                       <Main-Class>com.github.yourname.BotMain</Main-Class>
+                    </manifestEntries>
+                </transformer>
+            </transformers>
+            <filters>
+                <filter>
+                    <artifact>*:*</artifact>
+                    <excludes>
+                        <exclude>META-INF/*.SF</exclude>
+                        <exclude>META-INF/*.DSA</exclude>
+                        <exclude>META-INF/*.RSA</exclude>
+                    </excludes>
+                </filter>
+            </filters>
         </configuration>
         <executions>
           <execution>
