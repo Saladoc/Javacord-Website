@@ -26,7 +26,7 @@ This assumes your project is set up correctly, preferably with [Gradle](/wiki/ge
 
 ![](./running-idea-configurations-empty.png)
 
-**2.** In the newly opened window, click the `+` button in the top left and select `Application`
+**2.** In the newly opened window, click the `+` button in the top left and select `Application`.
 
 **3.** Give a name for your configuration and select the module to use the classpath of (usually `yourproject.main`).
 
@@ -100,7 +100,7 @@ dependencies {
 
 Now you can execute the `distZip` or `distTar` task with Gradle. The task will create a distribution and package it in an archive file that will be placed in the `build/distributions` directory. Extract the content of those files on your server or whichever machine you want to run your bot on.
 
-The distribution usually only contains the directories `bin` and `lib`. From the distribution directory, run either `bin/yourbot` or `bin/yourbot.bat`, depending on whether you're running the bot on linux or windows.
+The distribution usually only contains the directories `bin` and `lib`. From the distribution directory, run either `bin/yourbot` or `bin/yourbot.bat`, depending on whether you're running the bot on Linux or Windows.
 
 ### Building a Distribution with Maven
 
